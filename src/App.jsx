@@ -1,7 +1,9 @@
-
+import SnakeGame from "./games/SnakeGame";
+import { useState } from "react";
 import "./index.css";
 import WelcomePopup from "./components/WelcomePopup";
 import DateTimeWidget from "./components/DateTimeWidget";
+
 
 const projects = [
   {
@@ -28,7 +30,10 @@ const projects = [
 ];
 
 function App() {
+  const [gameLabOpen, setGameLabOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
   return (
+    
     <>
       <header className="navbar">
         <a className="logo" href="#home">PREM<span>FLIX</span></a>
@@ -117,15 +122,109 @@ function App() {
                   <h3>{project.title}</h3>
                   <p className="muted">{project.description}</p>
                   <p className="tech">{project.tech}</p>
-                  <a className="project-link" href={project.link} target="_blank" rel="noreferrer">
-                    GITHUB PROFILE ↗
-                  </a>
+                  {project.title === "Python Game Lab" ? (
+                    <button type="button" className="project-link game-banner-button" onClick={() => { setGameLabOpen(true); setSelectedGame(null); }} >
+                      PLAY GAMES →
+                      </button>
+                    ) : (
+                    <a
+                      className="project-link"
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GITHUB PROFILE ↗
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
           </div>
           <p className="small-note">Sample project cards — add your real repository links before publishing.</p>
         </section>
+
+            {gameLabOpen && (
+        <section className="section game-lab-screen" id="game-lab">
+         <button
+            type="button"
+            className="button secondary"
+            onClick={() => {
+              if (selectedGame) {
+                setSelectedGame(null);
+              } else {
+                setGameLabOpen(false);
+              }
+            }}
+          >
+            ← {selectedGame ? "BACK TO GAMES" : "CLOSE GAME LAB"}
+          </button>
+
+          {!selectedGame ? (
+            <>
+              <p className="eyebrow">PYTHON GAME LAB / 01</p>
+             <h2>
+                SELECT YOUR GAME<span className="red">.</span>
+              </h2>
+              <p className="muted">
+                Choose a game, test your skills and have fun.
+              </p>
+
+              <div className="game-grid">
+                <article className="project-card">
+                  <div className="project-art">
+                    <span className="project-symbol">🐍</span>
+                    <span className="art-title">SNAKE GAME</span>
+                  </div>
+                  <div className="project-details">
+                    <h3>Snake Game</h3>
+                    <p className="muted">
+                      Eat food, grow your snake and beat your high score.
+                    </p>
+                      <button type="button" className="button primary" onClick={() => setSelectedGame("snake")} >
+                       PLAY SNAKE →
+                      </button>
+                    </div>
+                  </article>
+
+                  <article className="project-card">
+                    <div className="project-art">
+                      <span className="project-symbol">✕ ○</span>
+                      <span className="art-title">TIC-TAC-TOE</span>
+                  </div>
+                  <div className="project-details">
+                    <h3>Tic-Tac-Toe</h3>
+                    <p className="muted">
+                      Challenge a friend in the classic X and O game.
+                    </p>
+                    <button
+                      type="button"
+                      className="button primary"
+                      onClick={() => setSelectedGame("tic-tac-toe")}
+                    >
+                    PLAY TIC-TAC-TOE →
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </>
+          ) : selectedGame === "snake" ? (
+            <div style={{ color: "white", padding: "20px" }}>
+  SNAKE COMPONENT TEST — IT WORKS!
+</div>
+          ) : (
+            <div className="game-placeholder">
+              <p className="eyebrow">GAME SELECTED</p>
+              <h2>
+                TIC-TAC-TOE<span className="red">.</span>
+              </h2>
+              <p className="muted">
+                We'll add the playable Tic-Tac-Toe game next.
+              </p>
+            </div>
+          )}
+
+        </section>
+    )}
 
         <section className="section" id="skills">
           <p className="eyebrow">03 / MY TOOLKIT</p>
@@ -224,6 +323,103 @@ function App() {
             </a>
           </div>
         </section>
+
+      
+        {gameLabOpen && (
+          <div
+            className="game-modal-overlay"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                setGameLabOpen(false);
+                setSelectedGame(null);
+              }
+            }}
+          >
+            <div
+              className="game-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="game-modal-title"
+            >
+              <button
+                className="game-modal-close"
+                type="button"
+                onClick={() => {
+                  setGameLabOpen(false);
+                  setSelectedGame(null);
+                }}
+                aria-label="Close Game Lab"
+              >
+                ×
+              </button>
+
+              {!selectedGame ? (
+                <>
+                  <p className="eyebrow">PREMFLIX / GAME LAB</p>
+                  <h2 id="game-modal-title">
+                    CHOOSE YOUR GAME<span className="red">.</span>
+                  </h2>
+                  <p className="muted">Select a game to start playing.</p>
+
+                  <button
+                    className="game-option"
+                    type="button"
+                    onClick={() => setSelectedGame("snake")}
+                  >
+                    <span className="game-option-icon">🐍</span>
+                    <span>
+                      <strong>Snake Game</strong>
+                      <small>Eat food. Grow longer. Beat your score.</small>
+                    </span>
+                    <span className="game-option-arrow">→</span>
+                  </button>
+
+                  <button
+                    className="game-option"
+                    type="button"
+                    onClick={() => setSelectedGame("tic-tac-toe")}
+                  >
+                    <span className="game-option-icon">✕ ○</span>
+                    <span>
+                      <strong>Tic-Tac-Toe</strong>
+                      <small>Challenge yourself or a friend.</small>
+                    </span>
+                    <span className="game-option-arrow">→</span>
+                  </button>
+                </>
+             
+
+          ) : (
+            <>
+              <button
+                type="button"
+                className="game-back"
+                onClick={() => setSelectedGame(null)}
+              >
+                ← ALL GAMES
+              </button>
+
+              {selectedGame === "snake" ? (
+                <SnakeGame />
+              ) : (
+                <>
+                  <p className="eyebrow">NOW PLAYING</p>
+                  <h2>
+                    TIC-TAC-TOE<span className="red">.</span>
+                  </h2>
+                  <p className="muted">
+                    The Tic-Tac-Toe game will be added next.
+                  </p>
+                </>
+              )}
+            </>
+          )}
+
+
+            </div>
+          </div>
+        )}
+
 
       </main>
 
