@@ -1,8 +1,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./SnakeGame.css";
-
-const API = "http://127.0.0.1:8000";
+const API = "https://premflix.onrender.com";
 
 export default function SnakeGame() {
   const [playerName, setPlayerName] = useState("Prem");
