@@ -137,3 +137,81 @@
     box-shadow: 0 0 14px gold;
   }
 }
+
+
+/* Mobile touch controls */
+.snake-mobile-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 20px auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.snake-control-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.snake-control {
+  width: 58px;
+  height: 52px;
+  border: 1px solid rgba(255, 60, 60, 0.7);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #252525, #111);
+  color: white;
+  font-size: 23px;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
+}
+
+.snake-control:active {
+  background: #e50914;
+  transform: scale(0.94);
+}
+
+.snake-control.up {
+  margin-bottom: 0;
+}
+
+/* Prevent page scrolling when swiping on the board */
+.snake-board {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Small mobile screens */
+@media (max-width: 600px) {
+  .snake-game {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+  }
+
+  .snake-board {
+    width: min(100%, 360px);
+    aspect-ratio: 1 / 1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .snake-control {
+    width: 62px;
+    height: 54px;
+    font-size: 25px;
+  }
+
+  .snake-mobile-controls {
+    margin-top: 22px;
+    margin-bottom: 18px;
+  }
+}
