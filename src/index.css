@@ -1000,3 +1000,43 @@ footer small { color: #777; font-size: 9px; letter-spacing: 1px; }
 .project-details button.game-banner-button:hover {
   box-shadow: 0 0 18px #e5091466;
 }
+
+
+.game-page-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  margin: 10px 0 25px;
+
+  background: #181818;
+  color: #ffffff;
+  border: 1px solid #e50914;
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.15);
+}
+
+.game-page-back:hover {
+  background: #e50914;
+  color: #ffffff;
+  border-color: #e50914;
+  transform: translateX(-4px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.35);
+}
+
+.game-page-back:active {
+  transform: scale(0.96);
+}
+
+.game-page-back:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}

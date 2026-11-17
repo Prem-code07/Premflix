@@ -1,0 +1,84 @@
+/* PREMFLIX Tic-Tac-Toe */
+.ttt-shell {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 24px 18px 56px;
+  color: #fff;
+  font-family: inherit;
+}
+
+.ttt-heading { text-align: center; margin: 12px 0 28px; }
+.ttt-eyebrow { color: #e50914; letter-spacing: 5px; font-size: 12px; font-weight: 800; margin: 0 0 10px; }
+.ttt-heading h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1; margin: 0; font-weight: 900; letter-spacing: -1.5px; }
+.ttt-heading h1 span { color: #e50914; }
+.ttt-subtitle { color: #aaa; margin: 12px 0 0; }
+
+.ttt-mode-panel {
+  max-width: 650px;
+  margin: 0 auto 28px;
+  padding: 22px;
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 16px;
+  box-shadow: 0 15px 45px rgba(0,0,0,.28);
+}
+.ttt-mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 5px; background: #080808; border-radius: 10px; }
+.ttt-mode-switch button, .ttt-secondary-btn {
+  border: 1px solid #333; border-radius: 8px; background: transparent; color: #bbb;
+  padding: 12px 14px; font-weight: 800; letter-spacing: .7px; cursor: pointer; transition: .2s ease;
+}
+.ttt-mode-switch button.active { background: #e50914; border-color: #e50914; color: #fff; }
+.ttt-mode-switch button:hover:not(.active), .ttt-secondary-btn:hover { border-color: #e50914; color: #fff; }
+.ttt-player-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+.ttt-player-fields label, .ttt-ai-label { display: flex; flex-direction: column; gap: 9px; color: #aaa; font-size: 11px; font-weight: 800; letter-spacing: 1.3px; }
+.ttt-player-fields input {
+  width: 100%; box-sizing: border-box; background: #1b1b1b; border: 1px solid #393939;
+  color: #fff; border-radius: 8px; padding: 13px 14px; font: inherit; font-size: 14px; outline: none;
+}
+.ttt-player-fields input:focus { border-color: #e50914; }
+.ttt-ai-label strong { display: flex; align-items: center; min-height: 43px; box-sizing: border-box; padding: 12px 14px; background: #1b1b1b; border: 1px solid #393939; border-radius: 8px; color: #fff; letter-spacing: .5px; font-size: 14px; }
+.ttt-primary-btn {
+  width: 100%; border: 0; border-radius: 9px; background: #e50914; color: #fff;
+  padding: 15px 20px; font-size: 14px; font-weight: 900; letter-spacing: 1px; cursor: pointer;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.ttt-primary-btn span { margin-left: 8px; font-size: 18px; }
+.ttt-primary-btn:hover { background: #f6121d; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(229,9,20,.25); }
+
+.ttt-match { max-width: 650px; margin: 0 auto; text-align: center; }
+.ttt-scoreboard { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 8px 0 18px; }
+.ttt-scoreboard > div:not(.ttt-round) { display: grid; justify-items: center; gap: 4px; padding: 12px; border: 1px solid #292929; background: #111; border-radius: 12px; }
+.ttt-scoreboard > div.current { border-color: #e50914; box-shadow: 0 0 18px rgba(229,9,20,.12); }
+.ttt-mark { font-size: 25px; font-weight: 950; }
+.x-mark, .x-cell { color: #e50914; }
+.o-mark, .o-cell { color: #fff; }
+.ttt-scoreboard small { color: #aaa; max-width: 100%; overflow-wrap: anywhere; }
+.ttt-scoreboard strong { font-size: 22px; }
+.ttt-round { color: #888; font-size: 10px; letter-spacing: 1.5px; white-space: nowrap; }
+.ttt-round strong { display: block; color: #fff; font-size: 18px; margin-top: 5px; }
+.ttt-status { min-height: 24px; color: #ddd; font-weight: 700; margin: 15px 0; }
+.ttt-status.finished { color: #ff3b45; }
+.ttt-board { width: min(100%, 420px); aspect-ratio: 1; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.ttt-cell {
+  min-width: 0; border: 1px solid #333; border-radius: 13px; background: #151515;
+  color: #fff; font-size: clamp(48px, 12vw, 82px); font-weight: 900; cursor: pointer;
+  display: grid; place-items: center; transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.ttt-cell:enabled:hover { background: #202020; border-color: #e50914; transform: scale(1.025); }
+.ttt-cell:disabled { cursor: default; }
+.ttt-cell.winning-cell { background: #321014; border-color: #e50914; box-shadow: inset 0 0 20px rgba(229,9,20,.15); }
+.ttt-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0 12px; }
+.ttt-secondary-btn { min-width: 150px; }
+.ttt-draw-score { color: #888; font-size: 11px; letter-spacing: 2px; }
+.ttt-draw-score strong { color: #fff; font-size: 16px; margin-left: 7px; }
+
+@media (max-width: 560px) {
+  .ttt-shell { padding: 16px 12px 36px; }
+  .ttt-mode-panel { padding: 15px; }
+  .ttt-player-fields { grid-template-columns: 1fr; }
+  .ttt-scoreboard { gap: 6px; }
+  .ttt-scoreboard > div:not(.ttt-round) { padding: 9px 5px; }
+  .ttt-scoreboard small { font-size: 10px; }
+  .ttt-actions { flex-direction: column; }
+  .ttt-actions button { width: 100%; }
+}
